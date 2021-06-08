@@ -114,28 +114,6 @@ async function htmlFila(doc) {
     </li>`);
 }
 
-/** Recupera el html de un
- * tenis en base a su id.
- * @param {string} id */
-async function
-  buscaTenis(id) {
-  if (id) {
-    const doc =
-      await daoTenis.
-        doc(id).
-        get();
-    if (doc.exists) {
-      /**
-       * @type {import(
-          "./tipos.js").
-            Tenis} */
-      const data = doc.data();
-      return (/* html */
-        `${cod(data.modelo)}`);
-    }
-  }
-  return "-- Sin tenis favorito --";
-}
 
 /** @param {Error} e */
 function errConsulta(e) {
