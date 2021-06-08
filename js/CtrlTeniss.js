@@ -38,8 +38,10 @@ async function protege(usuario) {
 }
 
 function consulta() {
-  daoUsuario.onSnapshot(
-    htmlLista, errConsulta);
+  daoTenis.
+    orderBy("marca")
+    .onSnapshot(
+      htmlLista, errConsulta);
 }
 
 /**
@@ -79,13 +81,13 @@ async function htmlFila(doc) {
    * @type {import("./tipos.js").
                       Usuario} */
   const data = doc.data();
+  const marca = cod(data.marca);
+  const modelo = cod(data.modelo);
+  const lkcompra = cod(data.lkcompra);
   const img = cod(
     await urlStorage(doc.id));
-  const tenis =
-    await buscaTenis(
-      data.tenisId);
-   const parámetros =
-    new URLSearchParams();
+  const parámetros =
+  new URLSearchParams();
   parámetros.append("id", doc.id);
   return (/* html */
     `<li>
@@ -99,11 +101,13 @@ async function htmlFila(doc) {
         <span class="texto">
           <strong
               class="primario">
-            ${cod(doc.id)}
+            ${cod(doc.id)}<br>
+            ${marca}
+            ${modelo}
           </strong>
           <span
           class="secundario">
-        ${tenis}<br>
+        ${lkcompra}<br>
       </span>
         </span>
       </a>
