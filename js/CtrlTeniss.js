@@ -8,6 +8,7 @@ import {
 } from "../lib/storagee.js";
 import {
   cod,
+  getString,
   muestraError
 } from "../lib/util.js";
 import {
