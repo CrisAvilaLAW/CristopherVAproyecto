@@ -52,6 +52,8 @@ async function busca() {
       const data = doc.data();
       forma.marca.value =
         data.marca || "";
+      forma.modelo.value =
+        data.modelo || "";
       forma.addEventListener(
         "submit", guarda);
       forma.eliminar.
