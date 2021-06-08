@@ -66,7 +66,7 @@ function htmlFila(doc) {
    * @type {import("./tipos.js").
                   Tenis} */
   const data = doc.data();
-  const marca = cod(data.marca);
+  const modelo = cod(data.modelo);
   const parámetros =
     new URLSearchParams();
   parámetros.append("id", doc.id);
@@ -75,7 +75,7 @@ function htmlFila(doc) {
       <a class="fila" href=
   "tenis.html?${parámetros}">
         <strong class="primario">
-          ${marca}
+          ${modelo}
         </strong>
       </a>
     </li>`);
