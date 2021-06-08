@@ -39,7 +39,7 @@ async function protege(usuario) {
 
 function consulta() {
   daoTenis.
-    orderBy("marca")
+    orderBy("marca").orderBy("modelo")
     .onSnapshot(
       htmlLista, errConsulta);
 }
