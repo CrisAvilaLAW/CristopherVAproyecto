@@ -12,7 +12,7 @@
 /**
  * @typedef {Object} Usuario
  * @property {string[]} rolIds
- * @property {string} pasatiempoId
+ * @property {string} tenisId
  */
 
 // @ts-nocheck
