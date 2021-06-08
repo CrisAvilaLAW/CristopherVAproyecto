@@ -12,12 +12,6 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
-import {
-  guardaUsuario
-} from "./teniss.js";
-
-  /** @type {HTMLFormElement} */
-  const forma = document["forma"];
 
 const daoTenis =
   getFirestore().
@@ -59,17 +53,8 @@ async function guarda(evt) {
     const modeloo = {
       marca,modelo,lkcompra
     };
-    
     await daoTenis.
       add(modeloo);
-
-     
-  const id = getString(
-    formData, "modelo").trim();
-  await guardaUsuario(evt,
-    formData, id);
-
-
     muestraTenis();
   } catch (e) {
     muestraError(e);
