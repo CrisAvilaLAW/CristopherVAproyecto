@@ -35,7 +35,8 @@ async function protege(usuario) {
   }
 }
 
-/** @param {Event} evt */
+/** @param {Event} evt 
+* @param {FormData} formData */
 async function guarda(evt) {
   try {
     evt.preventDefault();
