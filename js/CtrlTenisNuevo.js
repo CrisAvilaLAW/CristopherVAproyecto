@@ -40,15 +40,17 @@ async function guarda(evt) {
       new FormData(forma);
     const marca = getString(
       formData, "marca").trim();
+    const modelo = getString(
+      formData, "modelo").trim();
     /**
      * @type {
         import("./tipos.js").
                 Pasatiempo} */
-    const modelo = {
-      marca
+    const modeloo = {
+      marca,modelo
     };
     await daoPasatiempo.
-      add(modelo);
+      add(modeloo);
     muestraPasatiempos();
   } catch (e) {
     muestraError(e);
