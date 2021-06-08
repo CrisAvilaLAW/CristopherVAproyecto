@@ -34,7 +34,7 @@ import {
       const avatar =
         formData.get("avatar");
       await subeStorage(id, avatar);
-      muestraUsuarios();
+      muestraTenis();
     } catch (e) {
       muestraError(e);
     }
