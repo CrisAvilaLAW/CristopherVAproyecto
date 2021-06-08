@@ -33,7 +33,7 @@ async function protege(usuario) {
 
 function consulta() {
   daoTenis.
-    orderBy("modelo")
+    orderBy("marca")
     .onSnapshot(
       htmlLista, errConsulta);
 }
@@ -66,6 +66,7 @@ function htmlFila(doc) {
    * @type {import("./tipos.js").
                   Tenis} */
   const data = doc.data();
+  const marca = cod(data.marca);
   const modelo = cod(data.modelo);
   const parámetros =
     new URLSearchParams();
@@ -75,6 +76,7 @@ function htmlFila(doc) {
       <a class="fila" href=
   "teni.html?${parámetros}">
         <strong class="primario">
+          ${marca}
           ${modelo}
         </strong>
       </a>
