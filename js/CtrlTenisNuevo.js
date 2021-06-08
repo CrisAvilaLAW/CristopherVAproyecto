@@ -36,7 +36,7 @@ async function protege(usuario) {
 }
 
 /** @param {Event} evt 
-* @param {FormData} formData */
+* @param {FormData} formaData */
 async function guarda(evt) {
   try {
     evt.preventDefault();
@@ -47,7 +47,7 @@ async function guarda(evt) {
     const modelo = getString(
       formData, "modelo").trim();
     const avatar =
-      formData.get("avatar");
+      formaData.get("avatar");
     /**
      * @type {
         import("./tipos.js").
