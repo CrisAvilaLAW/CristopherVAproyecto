@@ -75,7 +75,7 @@ async function htmlLista(snap) {
 async function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
-                      Usuario} */
+                      Tenis} */
   const data = doc.data();
   const marca = cod(data.marca);
   const modelo = cod(data.modelo);
@@ -89,7 +89,7 @@ async function htmlFila(doc) {
     `<li>
       <a class="fila conImagen"
           href=
-    "usuario.html?${parámetros}">
+    "teni.html?${parámetros}">
         <span class="marco">
           <img src="${img}"
             alt="Falta el Avatar">
