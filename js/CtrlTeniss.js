@@ -149,6 +149,41 @@ async function buscaRoles(ids) {
   }
 }
 
+/**
+ * @param {import(
+    "../lib/tiposFire.js").
+    DocumentSnapshot} doc */
+    function htmlFila(doc) {
+      /**
+       * @type {import("./tipos.js").
+                      Tenis} */
+      const data = doc.data();
+      const marca = cod(data.marca);
+      const modelo = cod(data.modelo);
+      const lkcompra = cod(data.lkcompra);
+      const parámetros =
+        new URLSearchParams();
+      parámetros.append("id", doc.id);
+      return ( /* html */
+        `<li>
+          <a class="fila" href=
+      "teni.html?${parámetros}">
+      <span class="marco">
+          <img src="${img}"
+            alt="Falta el Avatar">
+        </span>
+            <strong class="primario">
+              ${marca}
+              ${modelo}
+            </strong>
+            <span
+            class="secundario">
+            ${lkcompra}
+            </span>
+          </a>
+        </li>`);
+    }
+
 /** @param {Error} e */
 function errConsulta(e) {
   muestraError(e);
