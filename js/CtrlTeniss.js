@@ -96,54 +96,6 @@ function consulta() {
         </li>`);
     }
 
-/** Recupera el html de un
- * tenis en base a su id.
- * @param {string} id */
-async function
-  buscaTenis(id) {
-  if (id) {
-    const doc =
-      await daoTenis.
-        doc(id).
-        get();
-    if (doc.exists) {
-      /**
-       * @type {import(
-          "./tipos.js").
-            Tenis} */
-      const data = doc.data();
-      return (/* html */
-        `${cod(data.modelo)}`);
-    }
-  }
-  return "-- Sin tenis favorito --";
-}
-
-/** Recupera el html de los
- * roles en base a sus id
- * @param {string[]} ids */
-async function buscaRoles(ids) {
-  let html = "";
-  if (ids && ids.length > 0) {
-    for (const id of ids) {
-      const doc = await daoRol.
-        doc(id).
-        get();
-      /**
-       * @type {
-      import("./tipos.js").Rol} */
-      const data = doc.data();
-      html += /* html */
-        `<em>${cod(doc.id)}</em>
-        <br>
-        ${cod(data.descripción)}
-        <br>`;
-    }
-    return html;
-  } else {
-    return "-- Sin Roles --";
-  }
-}
 
 /** @param {Error} e */
 function errConsulta(e) {
