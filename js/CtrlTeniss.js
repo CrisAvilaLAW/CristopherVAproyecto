@@ -17,12 +17,8 @@ import {
 const lista = document.
   querySelector("#lista");
 const firestore = getFirestore();
-const daoRol = firestore.
-  collection("Rol");
 const daoTenis = firestore.
   collection("Tenis");
-const daoUsuario = firestore.
-  collection("Usuario");
 
 getAuth().onAuthStateChanged(
   protege, muestraError);
@@ -68,10 +64,10 @@ function consulta() {
 async function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
-                      Usuario} */
+                      Tenis} */
   const data = doc.data();
   const img = cod(
-    await urlStorage(doc.id));
+    await urlStorage(doc.modelo));
   const tenis =
     await buscaTenis(
       data.tenisId);
