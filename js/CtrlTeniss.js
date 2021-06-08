@@ -80,11 +80,11 @@ async function busca() {
   evt.preventDefault();
   const formData =
     new FormData(forma);
-  const id = getString(
+  const ide = getString(
     formData, "modelo").trim();
 
   await guardaTenis(evt,
-   formData, id);
+   formData, ide);
 }
 
 
