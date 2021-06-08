@@ -12,19 +12,7 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
-import {
-  subeStorage
-} from "../lib/storage.js";
 
-/** Conexión a la base de datos
- * de Firebase.
- *  @returns {
-      import("./tiposFire").
-      Firestore} */
-export function getFirestore() {
-  // @ts-ignore
-  return firebase.firestore();
-}
 
 const daoTenis =
   getFirestore().
@@ -56,8 +44,7 @@ async function guarda(evt) {
       formData, "marca").trim();
     const modelo = getString(
       formData, "modelo").trim();
-    const avatar =
-      formaData.get("avatar");
+
     /**
      * @type {
         import("./tipos.js").
@@ -67,7 +54,6 @@ async function guarda(evt) {
     };
     await daoTenis.
       add(modeloo);
-    await subeStorage(modelo, avatar);
     muestraTenis();
   } catch (e) {
     muestraError(e);
