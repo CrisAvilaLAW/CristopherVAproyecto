@@ -18,7 +18,7 @@ const daoTenis = firestore.
   const params =
   new URL(location.href).
     searchParams;
-const ide = params.get("id");
+const ide = params.get("ide");
 
 /**
  * @param {Event} evt
