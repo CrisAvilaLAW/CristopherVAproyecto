@@ -103,7 +103,11 @@ async function htmlFila(doc) {
               class="primario">
             ${cod(doc.id)}
           </strong>
-         
+          <span
+          class="secundario">
+        ${tenis}<br>
+        ${roles}
+      </span>
         </span>
       </a>
     </li>`);
