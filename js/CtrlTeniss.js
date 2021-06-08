@@ -12,10 +12,11 @@ import {
     guardaUsuario
   } from "./teniss.js";
   
-  
+  const daoTenis =
+  getFirestore().
+    collection("Tenis");
   /** @type {HTMLFormElement} */
   const forma = document["forma"];
-  
   getAuth().onAuthStateChanged(
     protege, muestraError);
   
@@ -35,8 +36,25 @@ import {
   async function guarda(evt) {
     const formData =
       new FormData(forma);
+    const marca = getString(
+        formData, "marca").trim();
+    const modelo = getString(
+        formData, "modelo").trim();
+    const lkcompra = getString(
+          formData, "lkcompra").trim();
     const id = getString(
       formData, "modelo").trim();
+    
+     /**
+     * @type {
+        import("./tipos.js").
+                Tenis} */
+                const modeloo = {
+                    marca,modelo,lkcompra
+                  };
+                  await daoTenis.
+                    add(modeloo);
+
     await guardaUsuario(evt,
       formData, id);
   }
