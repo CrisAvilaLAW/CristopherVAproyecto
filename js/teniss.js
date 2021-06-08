@@ -15,7 +15,10 @@ import {
 const firestore = getFirestore();
 const daoTenis = firestore.
   collection("Tenis");
-
+  const params =
+  new URL(location.href).
+    searchParams;
+const ide = params.get("id");
 
 /**
  * @param {Event} evt
@@ -37,7 +40,7 @@ guardaTenis(evt, formData,
     marca,modelo,lkcompra
     };
     await daoTenis.
-    doc(id).
+    doc(ide).
     set(modeloo);
     
   const avatar =
