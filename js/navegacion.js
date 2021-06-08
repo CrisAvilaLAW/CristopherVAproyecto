@@ -1,5 +1,5 @@
 export function
-  muestraPasatiempos() {
+  muestraTenis() {
   location.href =
     "tenis.html";
 }
