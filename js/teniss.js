@@ -7,7 +7,9 @@ import {
   import {
     muestraError
   } from "../lib/util.js";
-  
+  import {
+    muestraTenis
+  } from "./navegacion.js";
  
   
   const firestore = getFirestore();
