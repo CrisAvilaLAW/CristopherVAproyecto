@@ -7,15 +7,15 @@ import {
   muestraError
 } from "../lib/util.js";
 import {
-  muestraPasatiempos
+  muestraTenis
 } from "./navegacion.js";
 import {
   tieneRol
 } from "./seguridad.js";
 
-const daoPasatiempo =
+const daoTenis =
   getFirestore().
-    collection("Pasatiempo");
+    collection("Tenis");
 const params =
   new URL(location.href).
     searchParams;
@@ -41,14 +41,14 @@ async function protege(usuario) {
 async function busca() {
   try {
     const doc =
-      await daoPasatiempo.
+      await daoTenis.
         doc(id).
         get();
     if (doc.exists) {
       /**
        * @type {
           import("./tipos.js").
-                  Pasatiempo} */
+                  Tenis} */
       const data = doc.data();
       forma.marca.value =
         data.marca || "";
@@ -63,7 +63,7 @@ async function busca() {
     }
   } catch (e) {
     muestraError(e);
-    muestraPasatiempos();
+    muestraTenis();
   }
 }
 
@@ -75,17 +75,19 @@ async function guarda(evt) {
       new FormData(forma);
     const marca = getString(
       formData, "marca").trim();
+    const modelo = getString(
+      formData, "modelo").trim();
     /**
      * @type {
         import("./tipos.js").
-                Pasatiempo} */
-    const modelo = {
-      marca
+                Tenis} */
+    const modeloo = {
+      marca,modelo
     };
-    await daoPasatiempo.
+    await daoTenis.
       doc(id).
-      set(modelo);
-    muestraPasatiempos();
+      set(modeloo);
+    muestraTenis();
   } catch (e) {
     muestraError(e);
   }
@@ -95,10 +97,10 @@ async function elimina() {
   try {
     if (confirm("Confirmar la " +
       "eliminación")) {
-      await daoPasatiempo.
+      await daoTenis.
         doc(id).
         delete();
-      muestraPasatiempos();
+      muestraTenis();
     }
   } catch (e) {
     muestraError(e);
