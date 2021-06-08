@@ -18,7 +18,7 @@ import {
   tieneRol
 } from "./seguridad.js";
 import {
-  guardaTenis
+  actualizaTenis
 } from "./teniss.js";
 
 const params =
@@ -77,29 +77,29 @@ async function busca() {
 /** 
  * @param {Event} evt */
  async function guarda(evt) {
+  evt.preventDefault();
   const formData =
     new FormData(forma);
   const id = getString(
     formData, "modelo").trim();
 
-  await guardaTenis(evt,
+  await actualizaTenis(evt,
    formData, id);
 }
 
 
 async function elimina() {
   try {
-    
     const formData =
     new FormData(forma);
-    const id = getString(
-      formData, "modelo").trim();
-
+  const modelo = getString(
+    formData, "modelo").trim();
     if (confirm("Confirmar la " +
       "eliminación")) {
       await daoTenis.
-        doc(id).delete();
-      await eliminaStorage(id);
+        doc(id).
+        delete();
+      await eliminaStorage(modelo);
       muestraTenis();
     }
   } catch (e) {
