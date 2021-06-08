@@ -18,7 +18,7 @@ import {
   tieneRol
 } from "./seguridad.js";
 import {
-  actualizaTenis
+  guardaTenis
 } from "./teniss.js";
 
 const params =
@@ -83,7 +83,7 @@ async function busca() {
   const id = getString(
     formData, "modelo").trim();
 
-  await actualizaTenis(evt,
+  await guardaTenis(evt,
    formData, id);
 }
 
