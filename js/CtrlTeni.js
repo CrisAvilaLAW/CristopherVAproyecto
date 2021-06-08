@@ -54,6 +54,8 @@ async function busca() {
         data.marca || "";
       forma.modelo.value =
         data.modelo || "";
+      forma.lkcompra.value =
+        data.lkcompra || "";
       forma.addEventListener(
         "submit", guarda);
       forma.eliminar.
@@ -79,12 +81,14 @@ async function guarda(evt) {
       formData, "marca").trim();
     const modelo = getString(
       formData, "modelo").trim();
+    const lkcompra = getString(
+        formData, "lkcompra").trim();
     /**
      * @type {
         import("./tipos.js").
                 Tenis} */
     const modeloo = {
-      marca,modelo
+      marca,modelo,lkcompra
     };
     await daoTenis.
       doc(id).

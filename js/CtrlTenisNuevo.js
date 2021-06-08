@@ -44,13 +44,15 @@ async function guarda(evt) {
       formData, "marca").trim();
     const modelo = getString(
       formData, "modelo").trim();
+    const lkcompra = getString(
+        formData, "lkcompra").trim();
 
     /**
      * @type {
         import("./tipos.js").
                 Tenis} */
     const modeloo = {
-      marca,modelo
+      marca,modelo,lkcompra
     };
     await daoTenis.
       add(modeloo);
