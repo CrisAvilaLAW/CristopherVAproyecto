@@ -34,8 +34,10 @@ async function protege(usuario) {
 }
 
 function consulta() {
+var unida= "marca"+"modelo";
+
   daoTenis.
-    orderBy("marca")
+    orderBy(unida)
     .onSnapshot(
       htmlLista, errConsulta);
 }
