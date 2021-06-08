@@ -16,6 +16,16 @@ import {
   subeStorage
 } from "../lib/storage.js";
 
+/** Conexión a la base de datos
+ * de Firebase.
+ *  @returns {
+      import("./tiposFire").
+      Firestore} */
+export function getFirestore() {
+  // @ts-ignore
+  return firebase.firestore();
+}
+
 const daoTenis =
   getFirestore().
     collection("Tenis");
