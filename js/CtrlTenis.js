@@ -3,35 +3,27 @@ import {
   getFirestore
 } from "../lib/fabricaa.js";
 import {
-  eliminaStorage,
   urlStorage
 } from "../lib/storagee.js";
 import {
+  cod,
   muestraError
 } from "../lib/util.js";
 import {
-  muestraUsuarios
-} from "./navegacion.js";
-import {
   tieneRol
 } from "./seguridad.js";
-import {
-  checksRoles,
-  guardaUsuario,
-  selectTenis
-} from "./usuarios.js";
 
-const params =
-  new URL(location.href).
-    searchParams;
-const id = params.get("id");
-const daoTenis = getFirestore().
-  collection("Tenis");
-/** @type {HTMLFormElement} */
-const forma = document["forma"];
-const img = document.
-  querySelector("img");
 /** @type {HTMLUListElement} */
+const lista = document.
+  querySelector("#lista");
+const firestore = getFirestore();
+const daoRol = firestore.
+  collection("Rol");
+const daoTenis = firestore.
+  collection("Tenis");
+const daoUsuario = firestore.
+  collection("Usuario");
+
 getAuth().onAuthStateChanged(
   protege, muestraError);
 
@@ -41,53 +33,89 @@ getAuth().onAuthStateChanged(
 async function protege(usuario) {
   if (tieneRol(usuario,
     ["Administrador"])) {
-    busca();
+    consulta();
   }
 }
 
-async function busca() {
-  try {
-    const doc = await daoTenis.
-      doc(id).
-      get();
-    if (doc.exists) {
-      const data = doc.data();
-      forma.cue.value = id || "";
-      img.src =
-        await urlStorage(modelo);
-      selectTenis(
-        forma.tenisId,
-        data.tenisId)
-      checksRoles(
-        listaRoles, data.rolIds);
-      forma.addEventListener(
-        "submit", guarda);
-      forma.eliminar.
-        addEventListener(
-          "click", elimina);
-    }
-  } catch (e) {
-    muestraError(e);
-    muestraUsuarios();
-  }
+function consulta() {
+  daoTenis.
+    orderBy("marca")
+    .onSnapshot(
+      htmlLista, errConsulta);
 }
 
-/** @param {Event} evt */
-async function guarda(evt) {
-  await guardaUsuario(evt,
-    new FormData(forma), id);
+/**
+ * @param {import(
+    "../lib/tiposFire.js").
+    QuerySnapshot} snap */
+async function htmlLista(snap) {
+  let html = "";
+  if (snap.size > 0) {
+    /** @type {
+          Promise<string>[]} */
+    let usuarios = [];
+    snap.forEach(doc => usuarios.
+      push(htmlFila(doc)));
+    const htmlFilas =
+      await Promise.all(usuarios);
+    /* Junta el todos los
+     * elementos del arreglo en
+     * una cadena. */
+    html += htmlFilas.join("");
+  } else {
+    html += /* html */
+      `<li class="vacio">
+        -- No hay tenis
+        registrados. --
+      </li>`;
+  }
+  lista.innerHTML = html;
 }
 
-async function elimina() {
-  try {
-    if (confirm("Confirmar la " +
-      "eliminación")) {
-      await daoUsuario.
-        doc(id).delete();
-      await eliminaStorage(id);
-      muestraUsuarios();
-    }
-  } catch (e) {
-    muestraError(e);
-  }
+/**
+ * @param {import(
+    "../lib/tiposFire.js").
+    DocumentSnapshot} doc */
+async function htmlFila(doc) {
+  /**
+   * @type {import("./tipos.js").
+                      Tenis} */
+  const data = doc.data();
+  const marca = cod(data.marca);
+  const modelo = cod(data.modelo);
+  const lkcompra = cod(data.lkcompra);
+  const img = cod(
+    await urlStorage(modelo));
+  const parámetros =
+  new URLSearchParams();
+  parámetros.append("id", doc.id);
+  return (/* html */
+    `<li>
+      <a class="fila conImagen"
+          href=
+    "teni.html?${parámetros}">
+        <span class="marco">
+          <img src="${img}"
+            alt="Falta el Avatar">
+        </span>
+        <span class="texto">
+          <strong
+              class="primario">
+            ${marca}
+            ${modelo}
+          </strong>
+          <span
+          class="secundario">
+        ${lkcompra}<br>
+      </span>
+        </span>
+      </a>
+    </li>`);
+}
+
+
+/** @param {Error} e */
+function errConsulta(e) {
+  muestraError(e);
+  consulta();
 }
