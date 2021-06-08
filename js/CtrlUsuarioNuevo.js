@@ -39,8 +39,7 @@ async function protege(usuario) {
 }
 
 /** 
- * @param {Event} evt
- * @param {FormData} formData */
+ * @param {Event} evt */
 async function guarda(evt) {
   const formData =
     new FormData(forma);
