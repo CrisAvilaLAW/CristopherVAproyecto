@@ -36,7 +36,7 @@ import {
     const formData =
       new FormData(forma);
     const id = getString(
-      formData, "cue").trim();
+      formData, "modelo").trim();
     await guardaUsuario(evt,
       formData, id);
   }
