@@ -50,8 +50,8 @@ async function busca() {
           import("./tipos.js").
                   Pasatiempo} */
       const data = doc.data();
-      forma.nombre.value =
-        data.nombre || "";
+      forma.marca.value =
+        data.marca || "";
       forma.addEventListener(
         "submit", guarda);
       forma.eliminar.
@@ -73,14 +73,14 @@ async function guarda(evt) {
     evt.preventDefault();
     const formData =
       new FormData(forma);
-    const nombre = getString(
-      formData, "nombre").trim();
+    const marca = getString(
+      formData, "marca").trim();
     /**
      * @type {
         import("./tipos.js").
                 Pasatiempo} */
     const modelo = {
-      nombre
+      marca
     };
     await daoPasatiempo.
       doc(id).
