@@ -5,7 +5,7 @@
   <meta name="viewport"
     content="width=device-width,
        initial-scale=1.0">
-  <title>Usuario Nuevo</title>
+  <title>Usuarios</title>
   <script
     src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js">
     </script>
@@ -15,6 +15,7 @@
   <script
     src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js">
     </script>
+  <!-- Agrega el manejo de storage. -->
   <script
     src="https://www.gstatic.com/firebasejs/8.2.3/firebase-storage.js">
     </script>
@@ -33,50 +34,21 @@
     href="css/estilos.css">
 </head>
 <body bgcolor="#F0FFFF">
-  <form name="forma">
-    <mi-nav></mi-nav>
-    <header>
-      <h1>Tenis Nuevo</h1>
-      
-    </header>
-    <p>
-      <label>
-        Imagen
-        <input name="avatar"
-          type="file" required
-          accept=".png,.jpg,.jpeg,.gif">
-      </label>
-    </p>
-    <p>
-        <label>
-          Marca
-          <input name="marca"
-            type="text" required>
-        </label>
-      </p>
-      <p>
-        <label>
-          Modelo
-          <input name="modelo"
-            type="text" required>
-        </label>
-      </p>
-      <p>
-        <label>
-          Link de compra
-          <input name="lkcompra"
-            type="text" required>
-        </label>
-      </p>
+  <mi-nav></mi-nav>
+  <header>
+    <h1>Usuarios</h1>
     <div class="herramientas">
-        <a href="tenis.html">
-          Cancelar</a>
-        <button type="submit">
-          Guardar
-        </button>
-      </div>
-    <mi-footer></mi-footer>
-  </form>
+      <a href="usuarioNuevo.html">
+        Agregar…</a>
+    </div>
+  </header>
+  <ul id="lista" class="lista">
+    <li>
+      <mi-progreso>
+      </mi-progreso>
+    </li>
+  </ul>
+  <mi-footer></mi-footer>
   <script type="module"
     src="js/CtrlTeniss.js">
     </script>
