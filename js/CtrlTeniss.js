@@ -1,39 +1,35 @@
 import {
   getAuth,
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/fabricaa.js";
 import {
   eliminaStorage,
   urlStorage
-} from "../lib/storage.js";
+} from "../lib/storagee.js";
 import {
   muestraError
 } from "../lib/util.js";
 import {
-  muestraUsuarios
+  muestraTenis
 } from "./navegacion.js";
 import {
   tieneRol
 } from "./seguridad.js";
 import {
-  checksRoles,
-  guardaUsuario,
-  selectTenis
-} from "./usuarios.js";
+  guardaTenis
+} from "./teniss.js";
 
 const params =
   new URL(location.href).
     searchParams;
 const id = params.get("id");
-const daoUsuario = getFirestore().
-  collection("Usuario");
+const daoTenis = getFirestore().
+  collection("Tenis");
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
 const img = document.
   querySelector("img");
 /** @type {HTMLUListElement} */
-const listaRoles = document.
-  querySelector("#listaRoles");
 getAuth().onAuthStateChanged(
   protege, muestraError);
 
@@ -49,20 +45,21 @@ async function protege(usuario) {
 
 async function busca() {
   try {
-    const doc = await daoUsuario.
+    const doc = await daoTenis.
       doc(id).
       get();
     if (doc.exists) {
       const data = doc.data();
-      forma.cue.value = id || "";
+      const modelo = cod(data.modelo);
+      forma.marca.value =
+        data.marca || "";
+      forma.modelo.value =
+        data.modelo || "";
+      forma.lkcompra.value =
+        data.lkcompra || "";
       img.src =
-        await urlStorage(id);
-      selectTenis(
-        forma.tenisId,
-        data.tenisId)
-      checksRoles(
-        listaRoles, data.rolIds);
-      forma.addEventListener(
+        await urlStorage(modelo);
+        forma.addEventListener(
         "submit", guarda);
       forma.eliminar.
         addEventListener(
@@ -70,24 +67,32 @@ async function busca() {
     }
   } catch (e) {
     muestraError(e);
-    muestraUsuarios();
+    muestraTenis();
   }
 }
 
-/** @param {Event} evt */
-async function guarda(evt) {
-  await guardaUsuario(evt,
-    new FormData(forma), id);
+
+/** 
+ * @param {Event} evt */
+ async function guarda(evt) {
+  const formData =
+    new FormData(forma);
+  const id = getString(
+    formData, "modelo").trim();
+
+  await guardaTenis(evt,
+   formData, id);
 }
+
 
 async function elimina() {
   try {
     if (confirm("Confirmar la " +
       "eliminación")) {
-      await daoUsuario.
+      await daoTenis.
         doc(id).delete();
       await eliminaStorage(id);
-      muestraUsuarios();
+      muestraTenis();
     }
   } catch (e) {
     muestraError(e);
