@@ -68,8 +68,6 @@ function consulta() {
        * @type {import("./tipos.js").
                       Tenis} */
       const data = doc.data();
-      const img = cod(
-        await urlStorage(doc.id));
       const marca = cod(data.marca);
       const modelo = cod(data.modelo);
       const lkcompra = cod(data.lkcompra);
@@ -80,11 +78,7 @@ function consulta() {
         `<li>
           <a class="fila conImagen" href=
       "teni.html?${parámetros}">
-            <span class="marco">
-            <img src="${img}"
-            alt="Falta el Avatar">
-            </span>
-            <strong class="primario">
+                        <strong class="primario">
               ${marca}
               ${modelo}
             </strong>
