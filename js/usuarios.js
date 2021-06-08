@@ -11,16 +11,16 @@ import {
   muestraUsuarios
 } from "./navegacion.js";
 
-const SIN_PASATIEMPO = /* html */
+const SIN_TENIS = /* html */
   `<option value="">
-    -- Sin Pasatiempo --
+    -- Sin Tenis favorito --
   </option>`;
 
 const firestore = getFirestore();
 const daoRol = firestore.
   collection("Rol");
-const daoPasatiempo = firestore.
-  collection("Pasatiempo");
+const daoTenis = firestore.
+  collection("Tenis");
 const daoUsuario = firestore.
   collection("Usuario");
 
@@ -29,22 +29,22 @@ const daoUsuario = firestore.
     HTMLSelectElement} select
  * @param {string} valor */
 export function
-  selectPasatiempos(select,
+  selectTenis(select,
     valor) {
   valor = valor || "";
-  daoPasatiempo.
-    orderBy("nombre").
+  daoTenis.
+    orderBy("modelo").
     onSnapshot(
       snap => {
-        let html = SIN_PASATIEMPO;
+        let html = SIN_TENIS;
         snap.forEach(doc =>
-          html += htmlPasatiempo(
+          html += htmlTenis(
             doc, valor));
         select.innerHTML = html;
       },
       e => {
         muestraError(e);
-        selectPasatiempos(
+        selectTenis(
           select, valor);
       }
     );
@@ -56,19 +56,19 @@ export function
   DocumentSnapshot} doc
  * @param {string} valor */
 function
-  htmlPasatiempo(doc, valor) {
+  htmlTenis(doc, valor) {
   const selected =
     doc.id === valor ?
       "selected" : "";
   /**
    * @type {import("./tipos.js").
-                  Pasatiempo} */
+                  Tenis} */
   const data = doc.data();
   return (/* html */
     `<option
         value="${cod(doc.id)}"
         ${selected}>
-      ${cod(data.nombre)}
+      ${cod(data.modelo)}
     </option>`);
 }
 
