@@ -84,9 +84,7 @@ async function htmlFila(doc) {
   const tenis =
     await buscaTenis(
       data.tenisId);
-  const roles =
-    await buscaRoles(data.rolIds);
-  const parámetros =
+   const parámetros =
     new URLSearchParams();
   parámetros.append("id", doc.id);
   return (/* html */
@@ -106,7 +104,6 @@ async function htmlFila(doc) {
           <span
           class="secundario">
         ${tenis}<br>
-        ${roles}
       </span>
         </span>
       </a>
