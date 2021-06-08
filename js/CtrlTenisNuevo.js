@@ -38,14 +38,14 @@ async function guarda(evt) {
     evt.preventDefault();
     const formData =
       new FormData(forma);
-    const nombre = getString(
-      formData, "nombre").trim();
+    const marca = getString(
+      formData, "marca").trim();
     /**
      * @type {
         import("./tipos.js").
                 Pasatiempo} */
     const modelo = {
-      nombre
+      marca
     };
     await daoPasatiempo.
       add(modelo);
