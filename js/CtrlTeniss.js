@@ -136,32 +136,6 @@ async function
   return "-- Sin tenis favorito --";
 }
 
-/** Recupera el html de los
- * roles en base a sus id
- * @param {string[]} ids */
-async function buscaRoles(ids) {
-  let html = "";
-  if (ids && ids.length > 0) {
-    for (const id of ids) {
-      const doc = await daoRol.
-        doc(id).
-        get();
-      /**
-       * @type {
-      import("./tipos.js").Rol} */
-      const data = doc.data();
-      html += /* html */
-        `<em>${cod(doc.id)}</em>
-        <br>
-        ${cod(data.descripción)}
-        <br>`;
-    }
-    return html;
-  } else {
-    return "-- Sin Roles --";
-  }
-}
-
 /** @param {Error} e */
 function errConsulta(e) {
   muestraError(e);
