@@ -59,21 +59,21 @@ async function guarda(evt) {
     const modeloo = {
       marca,modelo,lkcompra
     };
+    
     await daoTenis.
       add(modeloo);
+
+     
+  const id = getString(
+    formData, "modelo").trim();
+  await guardaUsuario(evt,
+    formData, id);
+
+
     muestraTenis();
   } catch (e) {
     muestraError(e);
   }
 }
 
-/** 
-   * @param {Event} evt */
- async function guarda(evt) {
-  const formData =
-    new FormData(forma);
-  const id = getString(
-    formData, "modelo").trim();
-  await guardaUsuario(evt,
-    formData, id);
-}
+
