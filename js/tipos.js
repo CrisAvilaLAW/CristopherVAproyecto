@@ -5,7 +5,7 @@
 
 /**
  * @typedef {Object} Pasatiempo
- * @property {string} nombre
+ * @property {string} marca
  */
 
 /**
