@@ -29,11 +29,11 @@ import {
     try {
       evt.preventDefault();
     const marca = 
-      formData.getString("marca");
+      formData.get("marca");
     const modelo = 
-      formData.getString("modelo");
+      formData.get("modelo");
     const lkcompra = 
-      formData.getString("lkcompra");
+      formData.get("lkcompra");
     
       const modeloo = {
       marca,modelo,lkcompra
