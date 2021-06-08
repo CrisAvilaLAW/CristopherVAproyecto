@@ -68,6 +68,7 @@ function htmlFila(doc) {
   const data = doc.data();
   const marca = cod(data.marca);
   const modelo = cod(data.modelo);
+  const lkcompra = cod(data.lkcompra);
   const parámetros =
     new URLSearchParams();
   parámetros.append("id", doc.id);
@@ -79,6 +80,10 @@ function htmlFila(doc) {
           ${marca}
           ${modelo}
         </strong>
+        <span
+        class="secundario">
+        ${lkcompra}
+        </span>
       </a>
     </li>`);
 }
