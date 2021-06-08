@@ -30,9 +30,9 @@
   <form name="forma">
     <mi-nav></mi-nav>
     <header>
-      <h1>Pasatiempo</h1>
+      <h1>Tenis</h1>
       <div class="herramientas">
-        <a href="pasatiempos.html">
+        <a href="tenis.html">
           Cancelar</a>
         <button>Guardar</button>
         <button name="eliminar"
@@ -43,8 +43,16 @@
     </header>
     <p>
       <label>
-        Nombre
-        <input name="nombre"
+        Marca
+        <input name="marca"
+          type="text" required
+          value="Cargando…">
+      </label>
+    </p>
+    <p>
+      <label>
+        Modelo
+        <input name="modelo"
           type="text" required
           value="Cargando…">
       </label>
@@ -52,7 +60,7 @@
     <mi-footer></mi-footer>
   </form>
   <script type="module"
-    src="js/CtrlPasatiempo.js">
+    src="js/CtrlTeni.js">
     </script>
 </body>
 </html>
