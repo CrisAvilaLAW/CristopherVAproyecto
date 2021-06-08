@@ -76,7 +76,7 @@ function htmlFila(doc) {
       <a class="fila" href=
   "teni.html?${parámetros}">
         <strong class="primario">
-          ${marca}<br>
+          ${marca}
           ${modelo}
         </strong>
       </a>
