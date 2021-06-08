@@ -4,7 +4,7 @@
  */
 
 /**
- * @typedef {Object} Pasatiempo
+ * @typedef {Object} Tenis
  * @property {string} marca
  * @property {string} modelo
  */
