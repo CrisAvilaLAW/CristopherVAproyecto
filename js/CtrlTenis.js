@@ -1,7 +1,10 @@
 import {
   getAuth,
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/fabricaa.js";
+import {
+  urlStorage
+} from "../lib/storagee.js";
 import {
   cod,
   muestraError
@@ -13,13 +16,16 @@ import {
 /** @type {HTMLUListElement} */
 const lista = document.
   querySelector("#lista");
-const daoTenis =
-  getFirestore().
-    collection("Tenis");
+const firestore = getFirestore();
+const daoRol = firestore.
+  collection("Rol");
+const daoTenis = firestore.
+  collection("Tenis");
+const daoUsuario = firestore.
+  collection("Usuario");
 
-getAuth().
-  onAuthStateChanged(
-    protege, muestraError);
+getAuth().onAuthStateChanged(
+  protege, muestraError);
 
 /** @param {import(
     "../lib/tiposFire.js").User}
@@ -42,11 +48,20 @@ function consulta() {
  * @param {import(
     "../lib/tiposFire.js").
     QuerySnapshot} snap */
-function htmlLista(snap) {
+async function htmlLista(snap) {
   let html = "";
   if (snap.size > 0) {
-    snap.forEach(doc =>
-      html += htmlFila(doc));
+    /** @type {
+          Promise<string>[]} */
+    let usuarios = [];
+    snap.forEach(doc => usuarios.
+      push(htmlFila(doc)));
+    const htmlFilas =
+      await Promise.all(usuarios);
+    /* Junta el todos los
+     * elementos del arreglo en
+     * una cadena. */
+    html += htmlFilas.join("");
   } else {
     html += /* html */
       `<li class="vacio">
@@ -61,32 +76,43 @@ function htmlLista(snap) {
  * @param {import(
     "../lib/tiposFire.js").
     DocumentSnapshot} doc */
-function htmlFila(doc) {
+async function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
-                  Tenis} */
+                      Tenis} */
   const data = doc.data();
   const marca = cod(data.marca);
   const modelo = cod(data.modelo);
   const lkcompra = cod(data.lkcompra);
+  const img = cod(
+    await urlStorage(modelo));
   const parámetros =
-    new URLSearchParams();
+  new URLSearchParams();
   parámetros.append("id", doc.id);
-  return ( /* html */
+  return (/* html */
     `<li>
-      <a class="fila" href=
-  "teni.html?${parámetros}">
-        <strong class="primario">
-          ${marca}
-          ${modelo}
-        </strong>
-        <span
-        class="secundario">
-        ${lkcompra}
+      <a class="fila conImagen"
+          href=
+    "teni.html?${parámetros}">
+        <span class="marco">
+          <img src="${img}"
+            alt="Falta el Avatar">
+        </span>
+        <span class="texto">
+          <strong
+              class="primario">
+            ${marca}
+            ${modelo}
+          </strong>
+          <span
+          class="secundario">
+        ${lkcompra}<br>
+      </span>
         </span>
       </a>
     </li>`);
 }
+
 
 /** @param {Error} e */
 function errConsulta(e) {
