@@ -65,7 +65,7 @@ async function htmlLista(snap) {
   } else {
     html += /* html */
       `<li class="vacio">
-        -- No hay usuarios
+        -- No hay tenis
         registrados. --
       </li>`;
   }
@@ -85,7 +85,7 @@ async function htmlFila(doc) {
   const modelo = cod(data.modelo);
   const lkcompra = cod(data.lkcompra);
   const img = cod(
-    await urlStorage(doc.id));
+    await urlStorage(modelo));
   const parámetros =
   new URLSearchParams();
   parámetros.append("id", doc.id);
@@ -101,7 +101,6 @@ async function htmlFila(doc) {
         <span class="texto">
           <strong
               class="primario">
-            ${cod(doc.id)}<br>
             ${marca}
             ${modelo}
           </strong>
