@@ -18,7 +18,7 @@ const daoTenis = firestore.
   const params =
   new URL(location.href).
     searchParams;
-const id = params.get("id");
+const ide = params.get("id");
 
 /**
  * @param {Event} evt
@@ -26,7 +26,7 @@ const id = params.get("id");
  * @param {string} id  */
 export async function
 guardaTenis(evt, formData,
-    ide) {
+    id) {
   try {
     evt.preventDefault();
   const marca = 
@@ -40,12 +40,12 @@ guardaTenis(evt, formData,
     marca,modelo,lkcompra
     };
     await daoTenis.
-    doc(id).
+    doc(ide).
     set(modeloo);
     
   const avatar =
     formData.get("avatar");
-    await subeStorage(ide, avatar);
+    await subeStorage(id, avatar);
     muestraTenis();
   } catch (e) {
     muestraError(e);

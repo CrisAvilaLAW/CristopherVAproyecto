@@ -34,9 +34,9 @@ async function protege(usuario) {
 async function guarda(evt) {
   const formData =
     new FormData(forma);
-  const ide = getString(
+  const id = getString(
     formData, "modelo").trim();
 
   await guardaTenis(evt,
-   formData, ide);
+   formData, id);
 }
