@@ -1,6 +1,6 @@
 import {
     getAuth
-  } from "../lib/fabrica.js";
+  } from "../lib/fabricaa.js";
   import {
     getString,
     muestraError
@@ -9,17 +9,12 @@ import {
     tieneRol
   } from "./seguridad.js";
   import {
-    checksRoles,
-    guardaUsuario,
-    selectTenis
-  } from "./usuarios.js";
+    guardaUsuario
+  } from "./teniss.js";
   
   
   /** @type {HTMLFormElement} */
   const forma = document["forma"];
-  /** @type {HTMLUListElement} */
-  const listaRoles = document.
-    querySelector("#listaRoles");
   
   getAuth().onAuthStateChanged(
     protege, muestraError);
@@ -32,9 +27,6 @@ import {
       ["Administrador"])) {
       forma.addEventListener(
         "submit", guarda);
-      selectTenis(
-        forma.tenisId, "");
-      checksRoles(listaRoles, []);
     }
   }
   
