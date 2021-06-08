@@ -90,6 +90,8 @@ async function elimina() {
   try {
     if (confirm("Confirmar la " +
       "eliminación")) {
+        const formData =
+    new FormData(forma);
         const id = getString(
           formData, "modelo").trim();
       await daoTenis.
