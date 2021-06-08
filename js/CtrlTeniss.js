@@ -79,7 +79,7 @@ async function htmlLista(snap) {
 async function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
-                      Usuario} */
+                      Tenis} */
   const data = doc.data();
   const marca = cod(data.marca);
   const modelo = cod(data.modelo);
