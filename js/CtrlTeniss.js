@@ -1,10 +1,10 @@
 import {
   getAuth,
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/fabricaa.js";
 import {
   urlStorage
-} from "../lib/storage.js";
+} from "../lib/storagee.js";
 import {
   cod,
   muestraError
