@@ -9,7 +9,7 @@ import {
   tieneRol
 } from "./seguridad.js";
 import {
-  guardaUsuario
+  guardaTenis
 } from "./teniss.js";
 
 
@@ -37,6 +37,6 @@ async function guarda(evt) {
   const id = getString(
     formData, "modelo").trim();
 
-  await guardaUsuario(evt,
+  await guardaTenis(evt,
    formData, id);
 }
