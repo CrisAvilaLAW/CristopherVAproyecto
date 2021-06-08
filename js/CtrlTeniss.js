@@ -46,29 +46,20 @@ function consulta() {
  * @param {import(
     "../lib/tiposFire.js").
     QuerySnapshot} snap */
-async function htmlLista(snap) {
-  let html = "";
-  if (snap.size > 0) {
-    /** @type {
-          Promise<string>[]} */
-    let usuarios = [];
-    snap.forEach(doc => usuarios.
-      push(htmlFila(doc)));
-    const htmlFilas =
-      await Promise.all(usuarios);
-    /* Junta el todos los
-     * elementos del arreglo en
-     * una cadena. */
-    html += htmlFilas.join("");
-  } else {
-    html += /* html */
-      `<li class="vacio">
-        -- No hay usuarios
-        registrados. --
-      </li>`;
-  }
-  lista.innerHTML = html;
-}
+    function htmlLista(snap) {
+      let html = "";
+      if (snap.size > 0) {
+        snap.forEach(doc =>
+          html += htmlFila(doc));
+      } else {
+        html += /* html */
+          `<li class="vacio">
+            -- No hay tenis
+            registrados. --
+          </li>`;
+      }
+      lista.innerHTML = html;
+    }
 
 /**
  * @param {import(
