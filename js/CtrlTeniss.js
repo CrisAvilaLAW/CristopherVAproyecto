@@ -90,6 +90,8 @@ async function elimina() {
   try {
     if (confirm("Confirmar la " +
       "eliminación")) {
+        const id = getString(
+          formData, "modelo").trim();
       await daoTenis.
         doc(id).delete();
       await eliminaStorage(id);
