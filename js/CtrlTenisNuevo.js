@@ -12,6 +12,9 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
+import {
+  subeStorage
+} from "../lib/storage.js";
 
 const daoTenis =
   getFirestore().
@@ -51,6 +54,9 @@ async function guarda(evt) {
     };
     await daoTenis.
       add(modeloo);
+     const avatar =
+      formData.get("avatar");
+    await subeStorage(modelo, avatar);
     muestraTenis();
   } catch (e) {
     muestraError(e);
