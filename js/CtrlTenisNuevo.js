@@ -46,6 +46,8 @@ async function guarda(evt) {
       formData, "marca").trim();
     const modelo = getString(
       formData, "modelo").trim();
+    const avatar =
+      formData.get("avatar");
     /**
      * @type {
         import("./tipos.js").
@@ -55,8 +57,6 @@ async function guarda(evt) {
     };
     await daoTenis.
       add(modeloo);
-     const avatar =
-      formData.get("avatar");
     await subeStorage(modelo, avatar);
     muestraTenis();
   } catch (e) {
