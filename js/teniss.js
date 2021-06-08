@@ -5,11 +5,8 @@ import {
     subeStorage
   } from "../lib/storagee.js";
   import {
-    cod, getForánea, muestraError
+    muestraError
   } from "../lib/util.js";
-  import {
-    muestraUsuarios
-  } from "./navegacion.js";
   
  
   
@@ -31,11 +28,29 @@ import {
       id) {
     try {
       evt.preventDefault();
-      const avatar =
-        formData.get("avatar");
+    const marca = 
+      formData.getString("marca");
+    const modelo = 
+      formData.getString("modelo");
+    const lkcompra = 
+      formData.getString("lkcompra");
+    
+      const modeloo = {
+      marca,modelo,lkcompra
+      };
+      await daoTenis.
+      add(modeloo);
+    
+    const avatar =
+      formData.get("avatar");
       await subeStorage(id, avatar);
       muestraTenis();
     } catch (e) {
       muestraError(e);
     }
   }  
+
+
+
+
+    
