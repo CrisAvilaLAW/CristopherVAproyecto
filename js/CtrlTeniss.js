@@ -17,12 +17,8 @@ import {
 const lista = document.
   querySelector("#lista");
 const firestore = getFirestore();
-const daoRol = firestore.
-  collection("Rol");
 const daoTenis = firestore.
   collection("Tenis");
-const daoUsuario = firestore.
-  collection("Usuario");
 
 getAuth().onAuthStateChanged(
   protege, muestraError);
@@ -79,7 +75,7 @@ async function htmlLista(snap) {
 async function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
-                      Tenis} */
+                      Usuario} */
   const data = doc.data();
   const marca = cod(data.marca);
   const modelo = cod(data.modelo);
@@ -93,7 +89,7 @@ async function htmlFila(doc) {
     `<li>
       <a class="fila conImagen"
           href=
-    "tenis.html?${parámetros}">
+    "usuario.html?${parámetros}">
         <span class="marco">
           <img src="${img}"
             alt="Falta el Avatar">
