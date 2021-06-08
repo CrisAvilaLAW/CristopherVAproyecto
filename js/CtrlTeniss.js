@@ -17,8 +17,12 @@ import {
 const lista = document.
   querySelector("#lista");
 const firestore = getFirestore();
+const daoRol = firestore.
+  collection("Rol");
 const daoTenis = firestore.
   collection("Tenis");
+const daoUsuario = firestore.
+  collection("Usuario");
 
 getAuth().onAuthStateChanged(
   protege, muestraError);
@@ -42,20 +46,29 @@ function consulta() {
  * @param {import(
     "../lib/tiposFire.js").
     QuerySnapshot} snap */
-    function htmlLista(snap) {
-      let html = "";
-      if (snap.size > 0) {
-        snap.forEach(doc =>
-          html += htmlFila(doc));
-      } else {
-        html += /* html */
-          `<li class="vacio">
-            -- No hay tenis
-            registrados. --
-          </li>`;
-      }
-      lista.innerHTML = html;
-    }
+async function htmlLista(snap) {
+  let html = "";
+  if (snap.size > 0) {
+    /** @type {
+          Promise<string>[]} */
+    let usuarios = [];
+    snap.forEach(doc => usuarios.
+      push(htmlFila(doc)));
+    const htmlFilas =
+      await Promise.all(usuarios);
+    /* Junta el todos los
+     * elementos del arreglo en
+     * una cadena. */
+    html += htmlFilas.join("");
+  } else {
+    html += /* html */
+      `<li class="vacio">
+        -- No hay usuarios
+        registrados. --
+      </li>`;
+  }
+  lista.innerHTML = html;
+}
 
 /**
  * @param {import(
@@ -64,10 +77,10 @@ function consulta() {
 async function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
-                      Tenis} */
+                      Usuario} */
   const data = doc.data();
   const img = cod(
-    await urlStorage(doc.modelo));
+    await urlStorage(doc.id));
   const tenis =
     await buscaTenis(
       data.tenisId);
@@ -148,41 +161,6 @@ async function buscaRoles(ids) {
     return "-- Sin Roles --";
   }
 }
-
-/**
- * @param {import(
-    "../lib/tiposFire.js").
-    DocumentSnapshot} doc */
-    function htmlFila(doc) {
-      /**
-       * @type {import("./tipos.js").
-                      Tenis} */
-      const data = doc.data();
-      const marca = cod(data.marca);
-      const modelo = cod(data.modelo);
-      const lkcompra = cod(data.lkcompra);
-      const parámetros =
-        new URLSearchParams();
-      parámetros.append("id", doc.id);
-      return ( /* html */
-        `<li>
-          <a class="fila" href=
-      "teni.html?${parámetros}">
-      <span class="marco">
-          <img src="${img}"
-            alt="Falta el Avatar">
-        </span>
-            <strong class="primario">
-              ${marca}
-              ${modelo}
-            </strong>
-            <span
-            class="secundario">
-            ${lkcompra}
-            </span>
-          </a>
-        </li>`);
-    }
 
 /** @param {Error} e */
 function errConsulta(e) {
