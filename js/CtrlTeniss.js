@@ -88,12 +88,14 @@ async function busca() {
 
 async function elimina() {
   try {
+    
+    const formData =
+    new FormData(forma);
+    const id = getString(
+      formData, "modelo").trim();
+
     if (confirm("Confirmar la " +
       "eliminación")) {
-        const formData =
-    new FormData(forma);
-        const id = getString(
-          formData, "modelo").trim();
       await daoTenis.
         doc(id).delete();
       await eliminaStorage(id);
