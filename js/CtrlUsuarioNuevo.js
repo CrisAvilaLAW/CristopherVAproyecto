@@ -13,9 +13,7 @@ import {
   guardaUsuario,
   selectTenis
 } from "./usuarios.js";
-import {
-  subeStorage
-} from "../lib/storage.js";
+
 
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
@@ -50,7 +48,4 @@ async function guarda(evt) {
     formData, "cue").trim();
   await guardaUsuario(evt,
     formData, id);
-  const avatar =
-      formData.get("avatar");
-    await subeStorage(id, avatar);
 }
