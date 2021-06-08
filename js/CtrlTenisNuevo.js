@@ -1,21 +1,18 @@
 import {
-  getAuth,
-  getFirestore
+  getAuth
 } from "../lib/fabricaa.js";
 import {
   getString,
   muestraError
 } from "../lib/util.js";
 import {
-  muestraTenis
-} from "./navegacion.js";
-import {
   tieneRol
 } from "./seguridad.js";
+import {
+  guardaUsuario
+} from "./teniss.js";
 
-const daoTenis =
-  getFirestore().
-    collection("Tenis");
+
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
 getAuth().onAuthStateChanged(
@@ -32,32 +29,14 @@ async function protege(usuario) {
   }
 }
 
-/** @param {Event} evt */
+/** 
+ * @param {Event} evt */
 async function guarda(evt) {
-  try {
-    evt.preventDefault();
-    const formData =
-      new FormData(forma);
-    const marca = getString(
-      formData, "marca").trim();
-    const modelo = getString(
-      formData, "modelo").trim();
-    const lkcompra = getString(
-        formData, "lkcompra").trim();
+  const formData =
+    new FormData(forma);
+  const id = getString(
+    formData, "modelo").trim();
 
-    /**
-     * @type {
-        import("./tipos.js").
-                Tenis} */
-    const modeloo = {
-      marca,modelo,lkcompra
-    };
-    await daoTenis.
-      add(modeloo);
-    muestraTenis();
-  } catch (e) {
-    muestraError(e);
-  }
+  await guardaUsuario(evt,
+   formData, id);
 }
-
-
