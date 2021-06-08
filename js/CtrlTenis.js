@@ -73,7 +73,7 @@ function htmlFila(doc) {
   return ( /* html */
     `<li>
       <a class="fila" href=
-  "tenis.html?${parámetros}">
+  "teni.html?${parámetros}">
         <strong class="primario">
           ${modelo}
         </strong>
