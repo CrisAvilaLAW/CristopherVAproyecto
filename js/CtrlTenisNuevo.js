@@ -1,7 +1,7 @@
 import {
   getAuth,
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/fabricaa.js";
 import {
   getString,
   muestraError
@@ -12,7 +12,12 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
+import {
+  guardaUsuario
+} from "./teniss.js";
 
+  /** @type {HTMLFormElement} */
+  const forma = document["forma"];
 
 const daoTenis =
   getFirestore().
@@ -60,4 +65,15 @@ async function guarda(evt) {
   } catch (e) {
     muestraError(e);
   }
+}
+
+/** 
+   * @param {Event} evt */
+ async function guarda(evt) {
+  const formData =
+    new FormData(forma);
+  const id = getString(
+    formData, "modelo").trim();
+  await guardaUsuario(evt,
+    formData, id);
 }
