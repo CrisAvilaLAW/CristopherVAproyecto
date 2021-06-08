@@ -63,7 +63,7 @@ function consulta() {
  * @param {import(
     "../lib/tiposFire.js").
     DocumentSnapshot} doc */
-    function htmlFila(doc) {
+    async function htmlFila(doc) {
       /**
        * @type {import("./tipos.js").
                       Tenis} */
@@ -78,7 +78,7 @@ function consulta() {
       parámetros.append("id", doc.id);
       return ( /* html */
         `<li>
-          <a class="fila" href=
+          <a class="fila conImagen" href=
       "teni.html?${parámetros}">
             <span class="marco">
             <img src="${img}"
