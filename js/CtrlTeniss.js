@@ -34,6 +34,7 @@ import {
   /** 
    * @param {Event} evt */
   async function guarda(evt) {
+    evt.preventDefault();
     const formData =
       new FormData(forma);
     const marca = getString(
@@ -45,15 +46,11 @@ import {
     const id = getString(
       formData, "modelo").trim();
     
-     /**
-     * @type {
-        import("./tipos.js").
-                Tenis} */
-                const modeloo = {
-                    marca,modelo,lkcompra
-                  };
-                  await daoTenis.
-                    add(modeloo);
+    const modeloo = {
+    marca,modelo,lkcompra
+    };
+    await daoTenis.
+    add(modeloo);
 
     await guardaUsuario(evt,
       formData, id);
