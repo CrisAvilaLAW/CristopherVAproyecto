@@ -13,9 +13,9 @@ import {
 /** @type {HTMLUListElement} */
 const lista = document.
   querySelector("#lista");
-const daoPasatiempo =
+const daoTenis =
   getFirestore().
-    collection("Pasatiempo");
+    collection("Tenis");
 
 getAuth().
   onAuthStateChanged(
@@ -32,8 +32,8 @@ async function protege(usuario) {
 }
 
 function consulta() {
-  daoPasatiempo.
-    orderBy("nombre")
+  daoTenis.
+    orderBy("marca")
     .onSnapshot(
       htmlLista, errConsulta);
 }
@@ -64,18 +64,18 @@ function htmlLista(snap) {
 function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
-                  Pasatiempo} */
+                  Tenis} */
   const data = doc.data();
-  const nombre = cod(data.nombre);
+  const marca = cod(data.marca);
   const parámetros =
     new URLSearchParams();
   parámetros.append("id", doc.id);
   return ( /* html */
     `<li>
       <a class="fila" href=
-  "pasatiempo.html?${parámetros}">
+  "tenis.html?${parámetros}">
         <strong class="primario">
-          ${nombre}
+          ${marca}
         </strong>
       </a>
     </li>`);
