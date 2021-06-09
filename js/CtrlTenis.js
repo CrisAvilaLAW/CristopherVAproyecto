@@ -26,12 +26,12 @@ getAuth().onAuthStateChanged(
 /** @param {import(
     "../lib/tiposFire.js").User}
     usuario */
-async function protege(usuario) {
-  if (tieneRol(usuario,
-    ["Administrador"])) {
-    consulta();
-  }
-}
+    async function protege(usuario) {
+      if (tieneRol(usuario,
+        ["Administrador"])) {
+        consulta();
+      }
+    }
 
 function consulta() {
   daoTenis.
