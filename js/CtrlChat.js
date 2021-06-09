@@ -154,7 +154,7 @@ function htmlFila(doc) {
         ${cod(data.usuarioId)}
       </strong>
       <span class="secundario">
-        ${cod(data.texto)}
+        ${cod(data.texto)}<br>
         ${dformat}
       </span>
     </li>`);
