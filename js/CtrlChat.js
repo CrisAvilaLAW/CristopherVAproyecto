@@ -141,6 +141,9 @@ function htmlFila(doc) {
    * @type {import("./tipos.js").
                       Mensaje} */
   const data = doc.data();
+  var d = data.timestamp.toDate(),
+                dformat = [d.getDate(), d.getMonth()+1, d.getFullYear()].join('/')+' '+
+                          [d.getHours(),d.getMinutes(),d.getSeconds()].join(':');
   /* Agrega un li con los datos
    * del documento, los cuales se
    * codifican para evitar
@@ -152,7 +155,7 @@ function htmlFila(doc) {
       </strong>
       <span class="secundario">
         ${cod(data.texto)}
-        ${cod(data.timestamp)}
+        ${dformat}
       </span>
     </li>`);
 }
