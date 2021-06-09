@@ -152,6 +152,7 @@ function htmlFila(doc) {
       </strong>
       <span class="secundario">
         ${cod(data.texto)}
+        ${cod(data.timestamp)}
       </span>
     </li>`);
 }
