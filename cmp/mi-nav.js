@@ -42,7 +42,11 @@ class MiNav extends HTMLElement {
           `<li>
             <a href=
               "chat.html">Chat</a>
-          </li>`;
+          </li>
+          <li>
+          <a href=
+      "tenis.html">Tenis</a>
+        </li>`;
       }
       /* Enlaces para solo
        * para administradores.
@@ -50,14 +54,12 @@ class MiNav extends HTMLElement {
       if (roles.has(
         "Administrador")) {
         html += /* html */
-          `<li>
+          `
+          <li>
             <a href=
       "usuarios.html">Usuarios</a>
           </li>
-          <li>
-          <a href=
-      "tenis.html">Tenis</a>
-        </li>`;
+          `;
       }
       this.ul.innerHTML += html;
     }
