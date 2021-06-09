@@ -8,7 +8,9 @@
   --color-header: white;
   --colorMiNav: white;
 }
-
+button{
+  font-weight:bold;
+}
 body {
   background-color: "#F0FFFF";
   max-width: 640px;
