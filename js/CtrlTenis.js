@@ -29,11 +29,8 @@ getAuth().onAuthStateChanged(
     async function protege(usuario) {
       if (tieneRol(usuario,
         ["Cliente"])) {
-        usuarioId = usuario.email;
         consulta();
-        forma.addEventListener(
-          "submit", agrega);
-      }
+        }
     }
 
 function consulta() {
