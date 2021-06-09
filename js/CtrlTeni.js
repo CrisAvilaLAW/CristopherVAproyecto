@@ -1,8 +1,13 @@
 import {
   getAuth,
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/fabricaa.js";
 import {
+  eliminaStorage,
+  urlStorage
+} from "../lib/storagee.js";
+import {
+  cod,
   getString,
   muestraError
 } from "../lib/util.js";
@@ -12,17 +17,21 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
+import {
+  guardaTenis
+} from "./teniss.js";
 
-const daoTenis =
-  getFirestore().
-    collection("Tenis");
 const params =
   new URL(location.href).
     searchParams;
 const id = params.get("id");
+const daoTenis = getFirestore().
+  collection("Tenis");
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
-
+const img = document.
+  querySelector("img");
+/** @type {HTMLUListElement} */
 getAuth().onAuthStateChanged(
   protege, muestraError);
 
@@ -36,34 +45,27 @@ async function protege(usuario) {
   }
 }
 
-/** Busca y muestra los datos que
- * corresponden al id recibido. */
 async function busca() {
   try {
-    const doc =
-      await daoTenis.
-        doc(id).
-        get();
+    const doc = await daoTenis.
+      doc(id).
+      get();
     if (doc.exists) {
-      /**
-       * @type {
-          import("./tipos.js").
-                  Tenis} */
       const data = doc.data();
+      const modelo = cod(data.modelo);
       forma.marca.value =
         data.marca || "";
       forma.modelo.value =
         data.modelo || "";
       forma.lkcompra.value =
         data.lkcompra || "";
-      forma.addEventListener(
+      img.src =
+        await urlStorage(modelo);
+        forma.addEventListener(
         "submit", guarda);
       forma.eliminar.
         addEventListener(
           "click", elimina);
-    } else {
-      throw new Error(
-        "No se encontró.");
     }
   } catch (e) {
     muestraError(e);
@@ -71,41 +73,33 @@ async function busca() {
   }
 }
 
-/** @param {Event} evt */
-async function guarda(evt) {
-  try {
-    evt.preventDefault();
-    const formData =
-      new FormData(forma);
-    const marca = getString(
-      formData, "marca").trim();
-    const modelo = getString(
-      formData, "modelo").trim();
-    const lkcompra = getString(
-        formData, "lkcompra").trim();
-    /**
-     * @type {
-        import("./tipos.js").
-                Tenis} */
-    const modeloo = {
-      marca,modelo,lkcompra
-    };
-    await daoTenis.
-      doc(id).
-      set(modeloo);
-    muestraTenis();
-  } catch (e) {
-    muestraError(e);
-  }
+
+/** 
+ * @param {Event} evt */
+ async function guarda(evt) {
+  evt.preventDefault();
+  const formData =
+    new FormData(forma);
+  const id = getString(
+    formData, "modelo").trim();
+
+  await guardaTenis(evt,
+   formData, id);
 }
+
 
 async function elimina() {
   try {
+    const formData =
+    new FormData(forma);
+  const modelo = getString(
+    formData, "modelo").trim();
     if (confirm("Confirmar la " +
       "eliminación")) {
       await daoTenis.
         doc(id).
         delete();
+      await eliminaStorage(modelo);
       muestraTenis();
     }
   } catch (e) {

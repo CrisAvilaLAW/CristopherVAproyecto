@@ -28,7 +28,7 @@ getAuth().onAuthStateChanged(
     usuario */
 async function protege(usuario) {
   if (tieneRol(usuario,
-    ["Administrador"])) {
+    ["Clientes"])) {
     consulta();
   }
 }
@@ -89,7 +89,7 @@ async function htmlFila(doc) {
     `<li>
       <a class="fila conImagen"
           href=
-    "teniss.html?${parámetros}">
+    "teni.html?${parámetros}">
         <span class="marco">
           <img src="${img}"
             alt="Falta el Avatar">
