@@ -1,9 +1,9 @@
 import {
   getFirestore
-} from "../lib/fabricaa.js";
+} from "../lib/fabrica.js";
 import {
   subeStorage
-} from "../lib/storagee.js";
+} from "../lib/storage.js";
 import {
   muestraError
 } from "../lib/util.js";
