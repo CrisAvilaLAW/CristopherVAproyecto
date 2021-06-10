@@ -1,6 +1,6 @@
 import {
   getAuth
-} from "../lib/fabricaa.js";
+} from "../lib/fabrica.js";
 import {
   getString,
   muestraError
