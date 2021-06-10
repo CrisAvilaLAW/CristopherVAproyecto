@@ -1,11 +1,11 @@
 import {
   getAuth,
   getFirestore
-} from "../lib/fabricaa.js";
+} from "../lib/fabrica.js";
 import {
   eliminaStorage,
   urlStorage
-} from "../lib/storagee.js";
+} from "../lib/storage.js";
 import {
   cod,
   getString,
