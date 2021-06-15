@@ -14,8 +14,7 @@ const forma = document["forma"];
 /** @type {HTMLImageElement} */
 const avatar = document.
   querySelector("#avatar");
-const daoTenis = firestore.
-  collection("Tenis");
+
 /* Escucha cambios de usuario.
  * El primer parámetro es una
  * función que se invoca cada que
@@ -48,37 +47,11 @@ async function
       usuario.displayName || "";
     avatar.src =
       usuario.photoURL || "";
-      const data = doc.data();
-      buscaTenis(
-      data.tenisId);
-     
-    forma.terminarSesión.
+       forma.terminarSesión.
       addEventListener(
         "click", terminaSesión);
   } else {
     // No ha iniciado sesión.
     iniciaSesión();
   }
-}
-
-/** Recupera el html de un
- * tenis en base a su id.
- * @param {string} id */
- async function
- buscaTenis(id) {
- if (id) {
-   const doc =
-     await daoTenis.
-       doc(id).
-       get();
-   if (doc.exists) {
-     /**
-      * @type {import(
-         "./tipos.js").
-           Tenis} */
-     const data = doc.data();
-     forma.modelo.value = cod(data.modelo);
-    }
- }
- return "-- Sin tenis favorito --";
 }
