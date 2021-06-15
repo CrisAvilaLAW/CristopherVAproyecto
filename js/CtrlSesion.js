@@ -14,12 +14,7 @@ const forma = document["forma"];
 /** @type {HTMLImageElement} */
 const avatar = document.
   querySelector("#avatar");
-  const params =
-  new URL(location.href).
-    searchParams;
-const id = params.get("id");
-const daoTenis = getFirestore().
-  collection("Tenis");
+
 /* Escucha cambios de usuario.
  * El primer parámetro es una
  * función que se invoca cada que
@@ -52,14 +47,6 @@ async function
       usuario.displayName || "";
     avatar.src =
       usuario.photoURL || "";
-    const doc = await daoTenis.
-      doc(id).
-      get();
-    if (doc.exists) {
-      const data = doc.data();
-      forma.modelo.value =
-      data.modelo || "";
-    }
        forma.terminarSesión.
       addEventListener(
         "click", terminaSesión);
