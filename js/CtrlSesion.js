@@ -14,12 +14,7 @@ const forma = document["forma"];
 /** @type {HTMLImageElement} */
 const avatar = document.
   querySelector("#avatar");
-  const params =
-  new URL(location.href).
-    searchParams;
-const id = params.get("id");
-const daoTenis = getFirestore().
-  collection("Tenis");
+
 /* Escucha cambios de usuario.
  * El primer parámetro es una
  * función que se invoca cada que
