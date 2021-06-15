@@ -2,6 +2,7 @@ import {
   getAuth
 } from "../lib/fabrica.js";
 import {
+  cod,
   muestraError
 } from "../lib/util.js";
 import {
@@ -11,6 +12,8 @@ import {
 
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
+const daoTenis = firestore.
+  collection("Tenis");
 /** @type {HTMLImageElement} */
 const avatar = document.
   querySelector("#avatar");
@@ -47,6 +50,10 @@ async function
       usuario.displayName || "";
     avatar.src =
       usuario.photoURL || "";
+    const data = doc.data();
+    const tenis =
+    await buscaTenis(
+      data.tenisId);
     forma.terminarSesión.
       addEventListener(
         "click", terminaSesión);
@@ -55,3 +62,27 @@ async function
     iniciaSesión();
   }
 }
+
+/** Recupera el html de un
+ * tenis en base a su id.
+ * @param {string} id */
+async function
+  buscaTenis(id) {
+  if (id) {
+    const doc =
+      await daoTenis.
+        doc(id).
+        get();
+    if (doc.exists) {
+      /**
+       * @type {import(
+          "./tipos.js").
+            Tenis} */
+      const data = doc.data();
+      return (/* html */
+        `${cod(data.modelo)}`);
+    }
+  }
+  return "-- Sin tenis favorito --";
+}
+
