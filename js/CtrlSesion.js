@@ -14,7 +14,12 @@ const forma = document["forma"];
 /** @type {HTMLImageElement} */
 const avatar = document.
   querySelector("#avatar");
-
+  const params =
+  new URL(location.href).
+    searchParams;
+const id = params.get("id");
+const daoTenis = getFirestore().
+  collection("Tenis");
 /* Escucha cambios de usuario.
  * El primer parámetro es una
  * función que se invoca cada que
@@ -47,17 +52,6 @@ async function
       usuario.displayName || "";
     avatar.src =
       usuario.photoURL || "";
-       forma.terminarSesión.
-      addEventListener(
-        "click", terminaSesión);
-  } else {
-    // No ha iniciado sesión.
-    iniciaSesión();
-  }
-}
-
-async function busca() {
-  try {
     const doc = await daoTenis.
       doc(id).
       get();
@@ -66,8 +60,11 @@ async function busca() {
       forma.modelo.value =
       data.modelo || "";
     }
-  } catch (e) {
-    muestraError(e);
-    muestraTenis();
+       forma.terminarSesión.
+      addEventListener(
+        "click", terminaSesión);
+  } else {
+    // No ha iniciado sesión.
+    iniciaSesión();
   }
 }
