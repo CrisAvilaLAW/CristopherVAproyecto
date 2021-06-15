@@ -14,7 +14,8 @@ const forma = document["forma"];
 /** @type {HTMLImageElement} */
 const avatar = document.
   querySelector("#avatar");
-
+const daoTenis = firestore.
+  collection("Tenis");
 /* Escucha cambios de usuario.
  * El primer parámetro es una
  * función que se invoca cada que
