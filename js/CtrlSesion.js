@@ -47,11 +47,37 @@ async function
       usuario.displayName || "";
     avatar.src =
       usuario.photoURL || "";
-       forma.terminarSesión.
+      const data = doc.data();
+      buscaTenis(
+      data.tenisId);
+     
+    forma.terminarSesión.
       addEventListener(
         "click", terminaSesión);
   } else {
     // No ha iniciado sesión.
     iniciaSesión();
   }
+}
+
+/** Recupera el html de un
+ * tenis en base a su id.
+ * @param {string} id */
+ async function
+ buscaTenis(id) {
+ if (id) {
+   const doc =
+     await daoTenis.
+       doc(id).
+       get();
+   if (doc.exists) {
+     /**
+      * @type {import(
+         "./tipos.js").
+           Tenis} */
+     const data = doc.data();
+     forma.modelo.value = cod(data.modelo);
+    }
+ }
+ return "-- Sin tenis favorito --";
 }
