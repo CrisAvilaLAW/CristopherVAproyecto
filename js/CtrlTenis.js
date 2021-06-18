@@ -90,14 +90,14 @@ async function htmlFila(doc) {
       <a class="fila conImagen"
           href=
     "teni.html?${parámetros}">
-        <span class="texto">
+        <span class="texto" align="center">
           <strong
-              class="primario">
+              class="primario" align="center">
             ${marca}
             ${modelo}
           </strong>
           <span
-          class="secundario">
+          class="secundario" align="center">
         ${lkcompra}<br>
       </span>
         </span>
