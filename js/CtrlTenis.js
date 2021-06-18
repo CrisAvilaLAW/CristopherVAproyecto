@@ -89,7 +89,7 @@ async function htmlFila(doc) {
     `<li align="center">
       <a class="fila conImagen"
           href=
-    "teni.html?${parámetros}">
+    "teni.html?${parámetros}"  align="center">
         <span class="texto" align="center">
           <strong
               class="primario" align="center">
