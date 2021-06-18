@@ -37,7 +37,7 @@
 }
 
 button{
-  font-weight:bold;
+  font-weight:900;
 }
 body {
   background-color: "#F0FFFF";
@@ -69,6 +69,7 @@ header input {
 }
 
 h1 {
+  font-weight:900;
   background-color:"#F0FFFF";
   margin: 0.5rem 0;
 }
