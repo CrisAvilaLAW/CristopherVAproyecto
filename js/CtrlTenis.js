@@ -101,11 +101,11 @@ async function htmlFila(doc) {
         ${lkcompra}<br>
       </span>
         </span>
-        <span class="marco">
+      </a>
+              <span class="marco">
           <img src="${img}"
             alt="Falta el Avatar">
         </span>
-      </a>
     </li>`);
 }
 
