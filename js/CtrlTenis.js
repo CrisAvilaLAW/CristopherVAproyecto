@@ -86,7 +86,7 @@ async function htmlFila(doc) {
   new URLSearchParams();
   parámetros.append("id", doc.id);
   return (/* html */
-    `<li>
+    `<li align="center">
       <a class="fila conImagen"
           href=
     "teni.html?${parámetros}">
